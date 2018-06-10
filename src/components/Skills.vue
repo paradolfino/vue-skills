@@ -12,7 +12,10 @@
       </form>
       <ul>
         <transition-group name="list" enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
-          <li v-for="(data, index) in skills" :key='index'>{{ data.skill }}</li>
+          <li v-for="(data, index) in skills" :key='index'>
+            {{ data.skill }}
+            <i class="fa fa-minus-circle" v-on:click="remove(index)"></i>
+            </li>
         </transition-group>
       </ul>
 
@@ -44,6 +47,9 @@ export default {
         }
       });
       
+    },
+    remove(id) {
+      this.skills.splice(id, 1);
     }
   }
 }
@@ -52,9 +58,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   @import "https://cdn.jsdelivr.net/npm/animate.css@3.5.1";
-  .holder {
-    background: #fff;
-  }
+  @import "https://use.fontawesome.com/releases/v5.0.13/css/all.css";
+  
 
   ul {
     margin: 0;
@@ -75,6 +80,15 @@ export default {
     text-align:center;
     padding: 30px 0;
     color: gray;
+  }
+
+  i {
+    float: right;
+    cursor: pointer;
+  }
+
+  .holder {
+    background: #fff;
   }
 
   .container {
